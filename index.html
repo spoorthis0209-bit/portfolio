@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spoorthi Srinivas Murthy</title>
+<meta name="description" content="Spoorthi Srinivas Murthy: AI and machine learning research and engineering. Evaluation awareness in reasoning models, robot learning, and applied ML systems.">
+<meta name="theme-color" content="#fbfaf7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: editorial research site. Wide hero with a live "signal" figure; research entries as two-column articles (sticky metadata rail left, prose right); projects as a 2-col card grid. Light-only by design. */
+:root {
+  --paper: #fbfaf7;
+  --paper-2: #f3f2ec;
+  --card: #ffffff;
+  --ink: #141a17;
+  --ink-2: #39443f;
+  --muted: #6b746f;
+  --faint: #9aa29d;
+  --rule: #e3e2db;
+  --rule-2: #cfcfc6;
+  --accent: #1f5c4b;
+  --accent-2: #3f8a72;
+  --accent-soft: #e4eee8;
+  --amber: #8f5d16;
+  --amber-soft: #f6ecda;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--sans); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+p { margin: 0; }
+.g { padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1120px; margin: 0 auto; }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 20px; top: 10px; z-index: 20; background: var(--paper); padding: 6px 10px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+
+/* Header */
+header.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6; background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+header.site.scrolled { border-bottom-color: var(--rule); }
+header.site .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 28px; padding-block: 16px; }
+.who { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); min-width: 0; }
+.mono { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--ink); display: grid; place-items: center; font-family: var(--serif); font-size: 15px; font-style: italic; flex: none; }
+.who b { font-family: var(--serif); font-weight: 500; font-size: 19px; letter-spacing: -.01em; display: block; line-height: 1.15; }
+.who small { font-family: var(--mono); font-size: 11.5px; color: var(--muted); letter-spacing: .03em; display: block; }
+nav.main ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 26px; }
+nav.main a { font-size: 15px; color: var(--ink-2); text-decoration: none; position: relative; padding-block: 4px; }
+nav.main a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+nav.main a:hover, nav.main a.on { color: var(--accent); }
+nav.main a:hover::after, nav.main a.on::after { transform: scaleX(1); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .9fr); gap: 56px; align-items: center; padding-block: 88px 56px; }
+.hero h1 { font-family: var(--serif); font-weight: 300; font-size: clamp(44px, 6.6vw, 86px); line-height: 1.0; letter-spacing: -.03em; margin: 22px 0 0; text-wrap: balance; }
+.hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+.hero .intro { margin-top: 28px; font-size: 19px; line-height: 1.6; color: var(--ink-2); max-width: 54ch; }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 500; padding: 10px 18px; border: 1px solid var(--rule-2); border-radius: 999px; color: var(--ink); text-decoration: none; background: var(--card); transition: border-color .2s, color .2s, background .2s, transform .2s; }
+.btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+.btn.solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.btn.solid:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn .arr { transition: transform .2s; }
+.btn:hover .arr { transform: translate(2px, -2px); }
+
+/* Signal figure */
+.figure { position: relative; background: var(--card); border: 1px solid var(--rule); border-radius: 18px; padding: 22px 22px 18px; box-shadow: 0 1px 2px rgba(20,26,23,.04), 0 24px 48px -32px rgba(20,26,23,.25); }
+.fig-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.fig-head span { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.fig-head b { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--accent); display: inline-flex; align-items: center; gap: 6px; }
+.fig-head b::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-2); animation: pulse 2.4s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+#sig { display: block; width: 100%; height: 190px; margin-top: 10px; }
+.fig-cap { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--muted); margin-top: 8px; }
+.fig-stats { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-top: 1px solid var(--rule); margin-top: 16px; padding-top: 14px; gap: 8px; }
+.fig-stats b { display: block; font-family: var(--serif); font-weight: 400; font-size: 26px; line-height: 1; font-variant-numeric: tabular-nums; }
+.fig-stats span { font-size: 12px; color: var(--muted); line-height: 1.35; display: block; margin-top: 5px; }
+
+/* Index */
+.index { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+.index a { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; row-gap: 4px; padding: 22px 24px 26px 0; text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--rule); transition: background .2s; }
+.index a + a { padding-left: 24px; border-left: 1px solid var(--rule); }
+.index .n { font-family: var(--mono); font-size: 12px; color: var(--accent); grid-row: span 2; padding-top: 6px; }
+.index b { font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1.15; }
+.index span:last-child { font-size: 14.5px; color: var(--muted); }
+.index a:hover b { color: var(--accent); font-style: italic; }
+
+/* Sections */
+section { scroll-margin-top: 80px; }
+.sec { padding-block: 120px 0; }
+.sec-head { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px 48px; align-items: end; padding-bottom: 28px; border-bottom: 1px solid var(--ink); }
+.sec-head h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(36px, 5vw, 56px); line-height: 1.02; letter-spacing: -.025em; margin: 0; text-wrap: balance; }
+.sec-head h2 em { font-style: italic; color: var(--accent); }
+.sec-head p { color: var(--muted); margin-top: 10px; max-width: 56ch; }
+
+/* Research entry: rail + body */
+.entry { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px 48px; padding-block: 52px; border-bottom: 1px solid var(--rule); scroll-margin-top: 80px; }
+.rail { display: flex; flex-direction: column; gap: 10px; align-self: start; padding-top: 4px; }
+.rail .num { font-family: var(--serif); font-weight: 300; font-size: 56px; line-height: .9; color: var(--rule-2); font-variant-numeric: tabular-nums; transition: color .3s; }
+.entry:hover .rail .num { color: var(--accent); }
+.rail .cat { font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+.rail .yr { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.status { align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .03em; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.status.draft { background: var(--amber-soft); color: var(--amber); }
+.status.live::before, .status.prog::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.status.live::before { background: #2f9e6a; animation: pulse 2.4s infinite; }
+.body { min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+.body h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 3.4vw, 38px); line-height: 1.12; letter-spacing: -.018em; margin: 0; text-wrap: balance; }
+.body .q { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 22px; line-height: 1.4; color: var(--accent); margin: 0; padding-left: 18px; border-left: 2px solid var(--accent-2); }
+.body > p { color: var(--ink-2); max-width: 64ch; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 8px; }
+.fact { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 16px 18px; }
+.fact b { display: block; font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.fact span { display: block; font-size: 13px; color: var(--muted); line-height: 1.4; margin-top: 8px; }
+
+details { border-top: 1px solid var(--rule); }
+details + details { border-top: 0; }
+details:last-of-type { border-bottom: 1px solid var(--rule); }
+summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 15px 0; font-weight: 600; font-size: 15px; }
+summary::-webkit-details-marker { display: none; }
+summary .pm { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--rule-2); display: grid; place-items: center; font-family: var(--mono); font-weight: 400; font-size: 14px; color: var(--muted); transition: transform .25s, border-color .2s, color .2s; flex: none; }
+details[open] summary .pm { transform: rotate(45deg); border-color: var(--accent); color: var(--accent); }
+summary:hover { color: var(--accent); }
+.detail { padding-bottom: 20px; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px 32px; }
+.detail .full { grid-column: 1 / -1; }
+.detail h5 { font-family: var(--mono); font-weight: 500; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px; }
+.detail ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 6px; }
+.detail p, .detail li { color: var(--ink-2); font-size: 16px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips span { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); background: var(--paper-2); border: 1px solid var(--rule); border-radius: 6px; padding: 3px 8px; }
+
+/* Projects grid */
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 36px; }
+.proj { position: relative; background: var(--card); border: 1px solid var(--rule); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px; min-width: 0; transition: border-color .25s, transform .25s, box-shadow .25s; }
+.proj:hover { border-color: var(--rule-2); transform: translateY(-3px); box-shadow: 0 24px 40px -30px rgba(20,26,23,.35); }
+.proj.feature { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.proj .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.proj .k { font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.proj h3 { font-family: var(--serif); font-weight: 400; font-size: 27px; line-height: 1.15; letter-spacing: -.012em; margin: 0; }
+.proj .result { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--accent); }
+.proj p { color: var(--ink-2); font-size: 16px; }
+.proj .chips { margin-top: auto; padding-top: 6px; }
+.pipeline { display: flex; flex-direction: column; gap: 0; border-left: 1px solid var(--rule-2); margin-left: 6px; }
+.pipeline div { position: relative; padding: 0 0 14px 20px; }
+.pipeline div:last-child { padding-bottom: 0; }
+.pipeline div::before { content: ""; position: absolute; left: -5px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--card); border: 1.5px solid var(--accent); }
+.pipeline b { font-size: 14.5px; font-weight: 600; display: block; }
+.pipeline span { font-size: 13.5px; color: var(--muted); }
+
+/* Experience */
+.jobs { margin-top: 8px; }
+.job { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 12px 48px; padding-block: 40px; border-bottom: 1px solid var(--rule); }
+.job .when { font-family: var(--mono); font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 8px; }
+.job .where { font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-top: 6px; display: block; }
+.job h3 { font-family: var(--serif); font-weight: 400; font-size: 28px; margin: 0; letter-spacing: -.012em; }
+.job ul { margin: 14px 0 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 8px; color: var(--ink-2); max-width: 70ch; }
+
+.creds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 40px; }
+.cred { background: var(--paper-2); border-radius: 16px; padding: 26px 28px; }
+.cred h4 { font-family: var(--mono); font-weight: 500; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px; }
+.cred ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.cred li { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 2px 16px; padding: 12px 0; border-top: 1px solid var(--rule-2); }
+.cred li:first-child { border-top: 0; padding-top: 0; }
+.cred b { font-weight: 600; font-size: 15.5px; }
+.cred .d { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; padding-top: 3px; }
+.cred .s { grid-column: 1 / -1; color: var(--muted); font-size: 14.5px; }
+
+/* About */
+.about { margin-top: 120px; background: var(--ink); color: #eef1ec; border-radius: 24px; padding: clamp(36px, 6vw, 72px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px 56px; align-items: end; position: relative; overflow: hidden; }
+.about::before { content: ""; position: absolute; right: -120px; top: -120px; width: 420px; height: 420px; border-radius: 50%; border: 1px solid rgba(238,241,236,.08); box-shadow: 0 0 0 60px rgba(238,241,236,.025), 0 0 0 120px rgba(238,241,236,.02); pointer-events: none; }
+.about .eyebrow { color: #8fc7b4; }
+.about h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(34px, 4.8vw, 54px); line-height: 1.05; letter-spacing: -.025em; margin: 14px 0 0; }
+.about h2 em { font-style: italic; color: #8fc7b4; }
+.about .txt { display: flex; flex-direction: column; gap: 14px; color: #c3cbc5; font-size: 17px; margin-top: 22px; }
+.about .side { display: flex; flex-direction: column; gap: 14px; position: relative; }
+.about .btn { background: transparent; color: #eef1ec; border-color: rgba(238,241,236,.25); }
+.about .btn:hover { border-color: #8fc7b4; color: #8fc7b4; }
+.about .btn.solid { background: #eef1ec; color: var(--ink); border-color: #eef1ec; }
+.about .btn.solid:hover { background: #8fc7b4; border-color: #8fc7b4; color: var(--ink); }
+.about .lines { font-family: var(--mono); font-size: 13.5px; color: #9aa59f; display: flex; flex-direction: column; gap: 4px; }
+.about .lines span { user-select: all; }
+
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding-block: 36px 44px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+footer a { color: var(--muted); }
+
+/* Reveal (visible at rest without JS) */
+.js .rv { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; }
+.js .rv.in { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding-block: 56px 48px; }
+  .index { grid-template-columns: 1fr; }
+  .index a, .index a + a { padding: 18px 0; border-left: 0; }
+  .sec { padding-block: 84px 0; }
+  .sec-head, .entry, .job { grid-template-columns: 1fr; gap: 14px; }
+  .rail { position: static; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+  .rail .num { font-size: 40px; }
+  .facts { grid-template-columns: 1fr; }
+  .detail { grid-template-columns: 1fr; }
+  .projects, .creds { grid-template-columns: 1fr; }
+  .proj.feature { grid-template-columns: 1fr; }
+  .about { grid-template-columns: 1fr; }
+  .job .when { padding-top: 0; }
+}
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  nav.main ul { gap: 4px 16px; }
+  .fig-stats b { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#research">Skip to research</a>
+
+<header class="site g" id="hdr">
+  <div class="wrap">
+    <a class="who" href="#top"><span class="mono" aria-hidden="true">SM</span><span><b>Spoorthi Srinivas Murthy</b><small>MS in Artificial Intelligence · Santa Clara University</small></span></a>
+    <nav class="main" aria-label="Sections">
+      <ul>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="g"><div class="wrap">
+    <div class="hero">
+      <div>
+        <span class="eyebrow">AI &amp; machine learning research · engineering</span>
+        <h1>What makes an AI system <em>hold up in the real world?</em></h1>
+        <p class="intro">I study how models behave when they are being evaluated, how robots learn and coordinate under real constraints, and how to take ML systems from a notebook to production. I'm an MS in Artificial Intelligence student at Santa Clara University and a former Software Reliability Engineer.</p>
+        <div class="btns">
+          <a class="btn solid" href="#research">Read the research <span class="arr">↓</span></a>
+          <a class="btn" href="https://github.com/spoorthis0209-bit" target="_blank" rel="noopener">GitHub <span class="arr">↗</span></a>
+          <a class="btn" href="https://linkedin.com/in/spoorthi-s" target="_blank" rel="noopener">LinkedIn <span class="arr">↗</span></a>
+        </div>
+      </div>
+      <figure class="figure" aria-label="Research at a glance" style="margin:0">
+        <div class="fig-head"><span>Fig. 1 · Signal under evaluation</span><b>Active research</b></div>
+        <canvas id="sig" aria-hidden="true"></canvas>
+        <p class="fig-cap">Does behavior shift when a model senses it is being tested?</p>
+        <div class="fig-stats">
+          <div><b>32,170</b><span>rollouts analyzed</span></div>
+          <div><b>5 of 6</b><span>models with significant shift</span></div>
+          <div><b>1.6 yrs</b><span>production reliability work</span></div>
+        </div>
+      </figure>
+    </div>
+
+    <nav class="index" aria-label="Research areas">
+      <a href="#eval"><span class="n">01</span><b>Model behavior</b><span>Evaluation awareness in reasoning models</span></a>
+      <a href="#imitation"><span class="n">02</span><b>Robot learning</b><span>Imitation learning &amp; multi-robot coordination</span></a>
+      <a href="#projects"><span class="n">03</span><b>Applied ML</b><span>Vision and retrieval systems, built and deployed</span></a>
+    </nav>
+
+    <!-- Research -->
+    <section class="sec" id="research" aria-labelledby="research-h">
+      <div class="sec-head rv">
+        <span class="eyebrow">Research</span>
+        <div><h2 id="research-h">Selected <em>research</em></h2><p>From evaluation science to robot learning.</p></div>
+      </div>
+
+      <article class="entry rv" id="nettwin">
+        <div class="rail">
+          <span class="num">01</span>
+          <span class="cat">Network intelligence</span>
+          <span class="yr">2026 – present</span>
+          <span class="status prog">In development</span>
+        </div>
+        <div class="body">
+          <h3>NetTwin AI: A Network That Predicts Its Own Failure</h3>
+          <p class="q">Can a Wi-Fi network warn you before it fails, and tell you what a change would do?</p>
+          <p>An AI digital twin of a Wi-Fi network that simulates device behavior, predicts outages, explains likely root causes, and recommends preventive actions. Instead of only detecting failure, it simulates what might happen if you change a router setting or lose an access point.</p>
+          <div>
+            <details>
+              <summary>Why this, and what it adds <span class="pm">+</span></summary>
+              <div class="detail">
+                <div><h5>Origin</h5><p>At Nile Secure I tested enterprise Wi-Fi access points across authentication, interoperability, and long-duration stability. NetTwin asks whether those failures can be predicted before they happen.</p></div>
+                <div><h5>What's different</h5><p>A what-if layer: simulate a configuration change or a lost access point before making it, and see the predicted impact.</p></div>
+              </div>
+            </details>
+          </div>
+          <div class="chips"><span>Machine learning</span><span>Time series</span><span>Graph ML</span><span>Network simulation</span></div>
+        </div>
+      </article>
+
+      <article class="entry rv" id="autoheal">
+        <div class="rail">
+          <span class="num">02</span>
+          <span class="cat">AI agents · Reliability</span>
+          <span class="yr">2026 – present</span>
+          <span class="status prog">In development</span>
+        </div>
+        <div class="body">
+          <h3>AutoHeal AI: Can AI Agents Repair Software Failures Safely?</h3>
+          <p class="q">When an AI agent fixes a failing test, does the fix actually work, or does it quietly break something else?</p>
+          <p>An AI system that examines failing automated tests, proposes code fixes, runs the tests in a sandbox, and determines whether the proposed repair actually works.</p>
+          <div>
+            <details>
+              <summary>Research contribution <span class="pm">+</span></summary>
+              <div class="detail">
+                <div><h5>Question</h5><p>When does autonomous repair introduce new bugs, and do verification gates prevent them?</p></div>
+                <div><h5>Origin</h5><p>Running automated test suites through Jenkins CI/CD at Nile Secure, where every failing test had to be triaged and fixed by hand.</p></div>
+              </div>
+            </details>
+          </div>
+          <div class="chips"><span>Python</span><span>Pytest</span><span>LLMs</span><span>GitHub Actions</span><span>Docker</span></div>
+        </div>
+      </article>
+
+      <article class="entry rv" id="eval">
+        <div class="rail">
+          <span class="num">03</span>
+          <span class="cat">Model behavior</span>
+          <span class="yr">2025 – present</span>
+          <span class="status draft">Draft report · Co-author</span>
+        </div>
+        <div class="body">
+          <h3>Verbalized vs. Behavioral Eval-Awareness in Frontier Reasoning Models</h3>
+          <p class="q">When a model notices it's being evaluated, does its behavior actually change?</p>
+          <p>If models behave differently during evaluations than in real use, benchmark scores can mislead the people who rely on them. This study tests whether evaluation context, given through explicit system-prompt framing or labels already inside benchmark prompts, shifts how reasoning models respond, and whether the model's own "this looks like a test" reasoning explains the shift.</p>
+          <div class="facts">
+            <div class="fact"><b>32,170</b><span>pre-registered rollouts across frontier and open-weight models</span></div>
+            <div class="fact"><b>+7.5–13.0<small style="font-size:.55em"> pp</small></b><span>higher refusal predicted by benchmark eval-labels</span></div>
+            <div class="fact"><b>5 of 6</b><span>models significant after Holm-Bonferroni correction</span></div>
+          </div>
+          <div>
+            <details open>
+              <summary>Results, methods &amp; limits <span class="pm">+</span></summary>
+              <div class="detail">
+                <div><h5>What we found</h5><ul><li>Eval-labels already embedded in benchmark prompts predicted higher refusal in 5 of 6 models.</li><li>A previously reported verbalized eval-awareness mediation effect did not replicate in a pre-registered test.</li></ul></div>
+                <div><h5>How</h5><p>Three experimental phases, two fully pre-registered, across models from several labs. We measured refusal shifts and checked whether verbalized eval-awareness in the reasoning trace explained them.</p></div>
+                <div class="full"><h5>Scope of the evidence</h5><p>The eval-label result is predictive, not a controlled intervention, so it shows association rather than cause. The report is still a draft.</p></div>
+              </div>
+            </details>
+          </div>
+          <div class="chips"><span>Python</span><span>Pre-registration</span><span>Statistical testing</span><span>LLM evaluation</span></div>
+        </div>
+      </article>
+
+      <article class="entry rv" id="imitation">
+        <div class="rail">
+          <span class="num">04</span>
+          <span class="cat">Robot learning</span>
+          <span class="yr">2026 – present</span>
+          <span class="status prog">In progress</span>
+        </div>
+        <div class="body">
+          <h3>Imitation Learning for Robot Task Automation</h3>
+          <p class="q">Can a robot learn a task from demonstrations instead of hand-coded instructions?</p>
+          <p>I'm studying learning policies that turn demonstrations into robot behavior, and evaluating how well and how reliably the robot completes tasks in simulated environments.</p>
+          <div>
+            <details>
+              <summary>Approach &amp; next steps <span class="pm">+</span></summary>
+              <div class="detail">
+                <div><h5>Approach</h5><p>Train policies from demonstration data with Python, PyTorch, and Gymnasium, then measure task performance in simulation.</p></div>
+                <div><h5>Next</h5><p>Compare imitation learning against reinforcement learning baselines on the same tasks.</p></div>
+              </div>
+            </details>
+          </div>
+          <div class="chips"><span>Python</span><span>PyTorch</span><span>Gymnasium</span><span>Imitation learning</span></div>
+        </div>
+      </article>
+
+      <article class="entry rv" id="multirobot">
+        <div class="rail">
+          <span class="num">05</span>
+          <span class="cat">Multi-agent systems</span>
+          <span class="yr">2026 – present</span>
+          <span class="status prog">In progress</span>
+        </div>
+        <div class="body">
+          <h3>Multi-Robot Coordination Using AI &amp; Wireless Communication</h3>
+          <p class="q">How do robots make joint decisions when the network between them is unreliable?</p>
+          <p>I'm studying how autonomous robots coordinate tasks and make joint decisions under wireless latency, packet loss, and bandwidth limits. The question comes from my wireless testing work, where I saw how often real networks drop and delay traffic.</p>
+        </div>
+      </article>
+
+      <article class="entry rv" id="datefruit">
+        <div class="rail">
+          <span class="num">06</span>
+          <span class="cat">Computer vision</span>
+          <span class="yr">2024</span>
+          <span class="status">Published · CIIT 2024</span>
+        </div>
+        <div class="body">
+          <h3>Date Fruit Classification: A Survey of Diverse Deep Learning Approaches</h3>
+          <p>A first-author paper, accepted and presented at CIIT 2024, surveying deep learning approaches for date fruit classification.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Projects -->
+    <section class="sec" id="projects" aria-labelledby="projects-h">
+      <div class="sec-head rv">
+        <span class="eyebrow">Projects</span>
+        <div><h2 id="projects-h">Applied <em>machine learning</em></h2><p>Systems taken from data to something that runs.</p></div>
+      </div>
+      <div class="projects">
+        <article class="proj feature rv">
+          <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+            <div class="top"><span class="k">Computer vision · Safety</span><span class="status live">Live</span></div>
+            <h3>Driver Impairment Detection</h3>
+            <span class="result">~91% accuracy · live webcam inference</span>
+            <p>A camera-based classifier that detects driver impairment (drunk vs. sober) from facial landmarks. I engineered EAR, PERCLOS, and MAR features from MediaPipe landmarks, trained a scikit-learn Random Forest, and added a live webcam inference mode with a spoken alert.</p>
+            <div class="chips"><span>Python</span><span>scikit-learn</span><span>MediaPipe</span><span>OpenCV</span><span>pyttsx3</span></div>
+          </div>
+          <div class="pipeline" aria-label="How it works">
+            <div><b>Capture</b><span>Live webcam frames with OpenCV</span></div>
+            <div><b>Landmarks</b><span>MediaPipe facial landmarks per frame</span></div>
+            <div><b>Features</b><span>EAR, PERCLOS, and MAR</span></div>
+            <div><b>Classify</b><span>scikit-learn Random Forest</span></div>
+            <div><b>Alert</b><span>Spoken warning via pyttsx3</span></div>
+          </div>
+        </article>
+
+        <article class="proj rv">
+          <div class="top"><span class="k">LLM · Retrieval</span><span class="k">Nile Secure Hackathon</span></div>
+          <h3>Confluence-Aware RAG Troubleshooting Chatbot</h3>
+          <span class="result">~50% faster issue resolution</span>
+          <p>Answers engineering troubleshooting questions from internal Confluence documentation, combining dense and sparse retrieval (FAISS + BM25) over an Ollama LLM behind a FastAPI/Streamlit interface, containerized with Docker and secured via SSO.</p>
+          <div class="chips"><span>LangChain</span><span>Ollama</span><span>FAISS</span><span>BM25</span><span>FastAPI</span><span>Docker</span></div>
+        </article>
+
+        <article class="proj rv">
+          <div class="top"><span class="k">Computer vision</span></div>
+          <h3>Date Fruit Sorting</h3>
+          <span class="result">95%+ accuracy</span>
+          <p>A YOLOv5 object detection model, with OpenCV/NumPy preprocessing and augmentation, that classifies date fruits by ripeness and quality and reduces manual sorting effort.</p>
+          <div class="chips"><span>PyTorch</span><span>YOLOv5</span><span>OpenCV</span><span>NumPy</span></div>
+        </article>
+
+        <article class="proj rv">
+          <div class="top"><span class="k">Deep learning</span></div>
+          <h3>Plant Disease Detection</h3>
+          <span class="result">90%+ accuracy · Flask web app</span>
+          <p>A TensorFlow/Keras CNN that classifies plant leaf diseases, with OpenCV-based preprocessing and augmentation, deployed as a Flask web app for real-time predictions.</p>
+          <div class="chips"><span>TensorFlow</span><span>Keras</span><span>OpenCV</span><span>Flask</span></div>
+        </article>
+
+        <article class="proj rv">
+          <div class="top"><span class="k">Wireless · RF</span></div>
+          <h3>Wi-Fi 7/6E Site Survey &amp; Bluetooth Coverage</h3>
+          <span class="result">RSSI at 3, 5 &amp; 10 m across BSSIDs</span>
+          <p>Site surveys with the Hamina Tool and Nilenav app comparing Wi-Fi 7 and Wi-Fi 6E access points, validating BLE coverage and device pairing, and analyzing packet captures in Wireshark.</p>
+          <div class="chips"><span>Hamina</span><span>Nilenav</span><span>Wireshark</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="sec" id="experience" aria-labelledby="experience-h">
+      <div class="sec-head rv">
+        <span class="eyebrow">Experience</span>
+        <div><h2 id="experience-h">Work <em>experience</em></h2></div>
+      </div>
+      <div class="jobs">
+        <article class="job rv">
+          <div><span class="when">Sep 2024 – Feb 2026</span><span class="where">Nile Secure · Bengaluru</span></div>
+          <div>
+            <h3>Software Reliability Engineer</h3>
+            <ul>
+              <li>Automated end-to-end testing of enterprise Wi-Fi access points with Python, Pytest, and Robot Framework, covering Open, PSK, and Enterprise authentication, client blacklisting, RF-neighbor validation, interoperability, scalability, and long-duration stability.</li>
+              <li>Used Wireshark, TShark, wpa_supplicant, and Linux networking tools to capture packets, troubleshoot connectivity, and validate Wi-Fi 6E/7 performance.</li>
+              <li>Ran automated suites through Jenkins CI/CD and worked with cross-functional teams to resolve software and network defects.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="job rv">
+          <div><span class="when">Dec 2023 – Feb 2024</span><span class="where">Winsun Global Tech · Bengaluru</span></div>
+          <div>
+            <h3>Web Development Intern</h3>
+            <ul>
+              <li>Completed an 8-week full-stack internship, building and deploying web applications with HTML, CSS, JavaScript, PHP, and XML.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <div class="creds rv">
+        <div class="cred">
+          <h4>Education</h4>
+          <ul>
+            <li><b>Santa Clara University</b><span class="d">2026 – 2028</span><span class="s">MS, Artificial Intelligence (expected 2028)</span></li>
+            <li><b>Vidyavardhaka College of Engineering</b><span class="d">2020 – 2024</span><span class="s">BE, Information Science &amp; Engineering · CGPA 8.28/10</span></li>
+          </ul>
+        </div>
+        <div class="cred">
+          <h4>Certifications</h4>
+          <ul>
+            <li><b>Google Cloud Certified – Generative AI Leader</b><span class="d">Jul 2026</span></li>
+            <li><b>Google Cloud Career Readiness – Associate Cloud Engineer Track</b><span class="d">Jul 2023</span></li>
+            <li><b>Research Methodology</b><span class="d">May 2024</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about rv" id="about" aria-labelledby="about-h">
+      <div>
+        <span class="eyebrow">About</span>
+        <h2 id="about-h">Research informed by <em>production engineering.</em></h2>
+        <div class="txt">
+          <p>Before graduate school I spent 1.6 years as a Software Reliability Engineer at Nile Secure, automating tests for enterprise Wi-Fi across real devices. In that work, a result only counted if it held up every time.</p>
+          <p>I bring the same standard to AI: compare models honestly, check that findings replicate, and build systems that keep working after the demo. I'm looking for ML and AI engineering and research internships for 2027.</p>
+        </div>
+      </div>
+      <div class="side">
+        <div class="btns" style="margin-top:0">
+          <a class="btn solid" href="mailto:spoorthis0209@gmail.com">Get in touch <span class="arr">↗</span></a>
+          <a class="btn" href="https://github.com/spoorthis0209-bit" target="_blank" rel="noopener">Explore GitHub <span class="arr">↗</span></a>
+        </div>
+        <div class="lines"><span>spoorthis0209@gmail.com</span><span>+1 669-252-4800</span><span>Santa Clara, California</span></div>
+      </div>
+    </section>
+  </div></div>
+</main>
+
+<footer class="g">
+  <div class="wrap">
+    <span>Spoorthi Srinivas Murthy · Updated October 2026</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Header border on scroll */
+  var hdr = document.getElementById('hdr');
+  addEventListener('scroll', function () { hdr.classList.toggle('scrolled', scrollY > 8); }, { passive: true });
+
+  /* Reveal on scroll (content visible if JS or IO missing) */
+  if ('IntersectionObserver' in window && !reduce) {
+    root.classList.add('js');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: .08, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+    setTimeout(function () { document.querySelectorAll('.rv').forEach(function (el) { var r = el.getBoundingClientRect(); if (r.top < innerHeight) el.classList.add('in'); }); }, 60);
+  }
+
+  /* Active nav */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.main a'));
+  if ('IntersectionObserver' in window) {
+    var so = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); }); });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    ['research', 'projects', 'experience', 'about'].forEach(function (id) { var el = document.getElementById(id); if (el) so.observe(el); });
+  }
+
+  /* Fig. 1: two signals drifting apart when "evaluation" is on. Decorative. */
+  var cv = document.getElementById('sig'); if (!cv) return;
+  var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  function size() { var r = cv.getBoundingClientRect(); W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+  function noise(x, t, s) { return Math.sin(x * 0.045 + t * 0.9 + s) * 0.5 + Math.sin(x * 0.11 - t * 1.3 + s * 2) * 0.25 + Math.sin(x * 0.023 + t * 0.4) * 0.35; }
+  function frame(ms) {
+    var t = ms / 1000;
+    ctx.clearRect(0, 0, W, H);
+    // grid
+    ctx.strokeStyle = 'rgba(20,26,23,0.06)'; ctx.lineWidth = 1;
+    for (var gx = 0; gx <= W; gx += W / 8) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
+    for (var gy = 0; gy <= H; gy += H / 4) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+    // shaded "evaluation" window
+    var x0 = W * 0.55;
+    ctx.fillStyle = 'rgba(31,92,75,0.06)'; ctx.fillRect(x0, 0, W - x0, H);
+    ctx.setLineDash([3, 4]); ctx.strokeStyle = 'rgba(31,92,75,0.45)'; ctx.beginPath(); ctx.moveTo(x0, 0); ctx.lineTo(x0, H); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(31,92,75,0.8)'; ctx.font = '10px "IBM Plex Mono", monospace'; ctx.fillText('EVAL CONTEXT', x0 + 8, 14);
+    ctx.fillStyle = 'rgba(107,116,111,0.9)'; ctx.fillText('DEPLOYMENT', 8, 14);
+    function line(color, width, shift, lift) {
+      ctx.strokeStyle = color; ctx.lineWidth = width; ctx.beginPath();
+      for (var x = 0; x <= W; x += 3) {
+        var k = Math.max(0, Math.min(1, (x - x0 + 30) / 60));
+        var y = H * 0.62 + noise(x, t, shift) * H * 0.14 - k * lift * H;
+        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+    line('rgba(154,162,157,0.9)', 1.25, 1.7, 0.0);
+    line('rgba(31,92,75,1)', 2, 0.3, 0.26);
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  size(); addEventListener('resize', size);
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
